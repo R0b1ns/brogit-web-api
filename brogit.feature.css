@@ -1,0 +1,219 @@
+/*!
+  * brogit feature v1.18.10 (https://brogit.de/)
+  * 2017-2018 Copyright (c) brogit
+  * Requirements: Bootstrap 4
+  */
+
+.bs-img-modal-lg .modal-body {
+	padding: 0;
+}
+
+.bs-img-modal-lg .modal-body img {
+	margin: 0 auto;
+}
+
+.bs-img-modal-lg .modal-description {
+	width: 100%;
+}
+
+.img-fullscreen {
+	cursor: pointer;
+}
+
+video.vid-fullscreen-background-fixed {
+  position: fixed;
+  right: 0; 
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  width: auto; 
+  height: auto;
+  z-index: -100;
+  object-fit: contain;
+  outline: 0;
+}
+
+video.vid-fullscreen-background-fixed:focus {
+	outline: 0;
+}
+
+.no-select {
+	/*-webkit-appearance: none;*/
+	-webkit-user-select: none;
+	-moz-user-select: -moz-none;
+	-ms-user-select: none;
+	
+	user-select: none;
+	-o-user-select:none;
+	-khtml-user-select: none;
+
+	cursor:default;
+}
+
+.blur {
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -ms-filter: blur(3px);
+    -o-filter: blur(3px);
+    /* FF doesn't support blur filter, but SVG */
+    filter: url("data:image/svg+xml;utf8,<svg height='0' xmlns='http://www.w3.org/2000/svg'><filter id='svgBlur' x='-5%' y='-5%' width='110%' height='110%'><feGaussianBlur in='SourceGraphic' stdDeviation='5'/></filter></svg>#svgBlur");
+    filter: progid: DXImageTransform.Microsoft.Blur(PixelRadius = '3');
+    filter: blur(3px);
+}
+
+.anim-slide {visibility:hidden;}
+.anim-slide-mod {visibility:hidden;}
+
+.anim-slide-extended {
+	position: relative;
+}
+
+.anim-slide-extended > div:nth-child(1) {
+	position: relative;z-index: 1;
+}
+
+.anim-slide-extended > div:nth-child(2) {
+	position: absolute;overflow: hidden;z-index: 0;
+	top:0;bottom:0;left:0;right:0;
+}
+
+.anim-slide-extended > div:nth-child(2)::after {
+	content: " ";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(0deg, #000, rgba(0,0,0,0));
+}
+
+.slide-up {
+  animation-name: slide;
+  -webkit-animation-name: slide;
+  animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  visibility: visible;
+}
+@keyframes slide {
+	0% {
+		opacity: 0;
+		transform: translateY(70%);
+	} 
+	100% {
+		opacity: 1;
+		transform: translateY(0%);
+	}
+}
+@-webkit-keyframes slide {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(70%);
+	} 
+	100% {
+		opacity: 1;
+		-webkit-transform: translateY(0%);
+	}
+}
+
+.anim-zoom-container {
+	overflow: hidden;
+	position: relative;
+}
+
+.anim-zoom {
+	z-index: -1;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.background-cover {
+	background-size: cover;background-position: center;background-repeat: no-repeat;
+}
+
+.gradient-dark {
+	background-color: #181818; /* Old browsers */
+
+	background-image: -moz-linear-gradient(140deg, #000,#181818 70%,#232721); /* FF3.6-15 */
+	background-image: -webkit-linear-gradient(140deg, #000,#181818 70%,#232721); /* Chrome10-25,Safari5.1-6 */
+
+	background-image: linear-gradient(140deg,#000,#181818 70%,#232721); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000', endColorstr='#232721',GradientType=0 ); /* IE6-9 */
+
+	color: #c0c0c0;
+}
+
+.gradient-dark h1, .gradient-dark h2, .gradient-dark h3, .gradient-dark h4, .gradient-dark h5, .gradient-dark h6 {
+	color: #fff;
+}
+
+.gradient-grey {
+	background-color: #2d2d2d; /* Old browsers */
+
+	background-image: -moz-linear-gradient(140deg, #171a15,#2d2d2d 70%,#373b35); /* FF3.6-15 */
+	background-image: -webkit-linear-gradient(140deg, #171a15,#2d2d2d 70%,#373b35); /* Chrome10-25,Safari5.1-6 */
+
+	background-image: linear-gradient(140deg,#171a15,#2d2d2d 70%,#373b35); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#171a15', endColorstr='#373b35',GradientType=0 ); /* IE6-9 */
+
+	color: #b5b5b5;
+}
+
+.gradient-grey h1, .gradient-grey h2, .gradient-grey h3, .gradient-grey h4, .gradient-grey h5, .gradient-grey h6 {
+	color: #fff;
+}
+
+.gradient-light {
+	background-color: #fff; /* Old browsers */
+
+	background-image: -moz-linear-gradient(140deg, #E8E5EA,#fff 70%,#C8C4CA); /* FF3.6-15 */
+	background-image: -webkit-linear-gradient(140deg, #E8E5EA,#fff 70%,#C8C4CA); /* Chrome10-25,Safari5.1-6 */
+
+	background-image: linear-gradient(140deg,#E8E5EA,#fff 70%,#C8C4CA); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E8E5EA', endColorstr='#C8C4CA',GradientType=0 ); /* IE6-9 */
+
+	color: #444;
+}
+
+.gradient-light h1, .gradient-light h2, .gradient-light h3, .gradient-light h4, .gradient-light h5, .gradient-light h6 {
+	color: #111;
+}
+
+/*Bootstrap 4, carousel as background (covered), dynamic height, carousel control only on hover */
+.carousel-preview {
+	/*setting up height and margin*/
+}
+
+.carousel-preview.carousel, .carousel-preview .carousel-inner {
+	height: 100%;
+}
+
+.carousel-preview .carousel-control-prev, .carousel-preview .carousel-control-next {
+	opacity: 0;
+	transition: .5s ease-out;
+}
+
+.carousel-preview:hover .carousel-control-prev, .carousel-preview:hover .carousel-control-next {
+	opacity: .5;
+}
+
+.carousel-preview .carousel-item {
+	width: 100%;
+	height: 100%;
+	
+	background-size: cover;
+	background-position: center;
+}
+/*
+.carousel-preview .carousel-item:first-child {
+	background-image: url('../images/img2.png');
+}
+
+.carousel-preview .carousel-item:nth-child(2) {
+	background-image: url('../images/img.png');
+}
+
+.carousel-preview .carousel-item:nth-child(3) {
+	background-image: url('../images/img3.jpg');
+}
+*/
