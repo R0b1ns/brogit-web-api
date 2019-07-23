@@ -1,5 +1,5 @@
 # brogit W-API
-*v1.18.12*
+*v1.19.7* - [api.brogit.de](https://api.brogit.de/)
 
 
 ## Features
