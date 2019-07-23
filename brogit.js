@@ -1,6 +1,6 @@
 /*!
-  * brogit v1.18.12 (https://brogit.de/)
-  * 2017-2018 Copyright (c) brogit
+  * brogit v1.19.7 (https://brogit.de/)
+  * 2017-2019 Copyright (c) brogit
   * Requirements: jQuery 3
   */
 
@@ -77,7 +77,7 @@ function Client(origin)
 
                 if(lodata = client.loxhrStorage[containerElement]) {
                     lodata.data.offset += lodata.data.limit;
-                    if(success(resultdata)) {
+                    if(textStatus == 'success') {
                         lodata.status = "ready";
                     }
                     else {
@@ -120,6 +120,47 @@ function Client(origin)
             client.loxhr_reload($(this));
         }
     }
+
+    //UPDATE this 26.03.2019, deprecated
+/*    this.upload = function(formelement, route, callback) {
+        if(typeof(FormData) == 'undefined') {
+            console.error("Cant use XHR Upload");
+            return true;
+        }
+
+        var form = new FormData();
+        var files = formelement.find('input[type="file"]').prop('files');
+
+        $.each(files, function(key, value)
+        {
+            form.append(key, value);
+        });
+
+        Crequest++;
+        this.checkloading();
+        $.ajax($.extend( {}, this.request, {
+            type: 'POST',
+            url: route,
+            cache : false,
+            contentType: false,
+            processData: false,
+            mimeType:"multipart/form-data",
+            data: form,
+            xhr: function(){
+                //upload Progress
+                var xhr = $.ajaxSettings.xhr();
+                if (xhr.upload) {
+                    xhr.upload.addEventListener('progress', console.log, true);
+                }
+                return xhr;
+            },
+            complete: function (result) {
+                Cresponse++;
+                client.checkloading();
+                callback(result);
+            }
+        } ) );
+    }*/
 
     this.upload = function(file, callback) {
         var route = "api/file";
@@ -254,18 +295,20 @@ function ClientResponse() {
 
     //UPDATE allow multi text and functions
     //autodelay by text length
-    this.say = function(text, nextCallback) {
+    this.say = function(text, nextCallback, param_delay_long) {
         nextCallback = nextCallback || function() {};
+        my_delay_long = param_delay_long || delay_long;
 
         resp.text(text);
-        resp.fadeIn().delay(this.autodelay(text)).fadeOut(delay_long, nextCallback);
+        resp.fadeIn().delay(this.autodelay(text)).fadeOut(my_delay_long, nextCallback);
     }
 
-    this.choice = function(text, nextCallback) {
+    this.choice = function(text, nextCallback, param_delay_short) {
         nextCallback = nextCallback || function() {};
+        my_delay_short = param_delay_short || delay_short;
 
         resp.text(text);
-        resp.fadeIn().delay(delay_short).fadeIn(0, nextCallback);
+        resp.fadeIn().delay(my_delay_short).fadeIn(0, nextCallback);
     }
 
     this.addTemplate = function(templateSelector, beforeCallback) {
@@ -300,8 +343,9 @@ function ClientResponse() {
         return element;
     }
 
-    this.removeTemplate = function(templateSelector, nextCallback) {
+    this.removeTemplate = function(templateSelector, nextCallback, param_delay_long) {
         nextCallback = nextCallback || function() {};
+        my_delay_long = param_delay_long || delay_long;
 
         if(!templates[templateSelector]) { return false;}
 
@@ -310,7 +354,7 @@ function ClientResponse() {
             delete templates[templateSelector];
 
             //finish the choice move
-            resp.fadeOut(delay_long, function() {
+            resp.fadeOut(my_delay_long, function() {
                 nextCallback();
             });
         });
@@ -388,7 +432,7 @@ function ClientResponse() {
 
         client.xhr('post', route, data, function(result, data, textStatus, jqXHR) {
             responseData = $.merge(responseData, [result]);
-            if(success(result)) {
+            if(textStatus == 'success') {
                 if(typeof(callbacks.success) == "function") {
                     callbacks.success(me, result, data);
                 }
@@ -452,11 +496,31 @@ function ClientResponse() {
         }
         console.debug("Callback not callable");
     }
-}
 
-function success(result)
-{
-    return (result.status && (result.status == 200)) ? true : false;
+
+// client.ai.resume = true;
+// client.ai.resumeCB = null;
+
+// client.ai.stop = function() {
+//  client.ai.resume = false;
+// }
+
+// client.ai.resume = function() {
+//  var callback = client.ai.resumeCB;
+//  client.ai.resumeCB = null;
+//  callback();
+// }
+
+// client.ai.try_resume(callback) {
+//  if(client.ai.resume) {
+//      callback();
+//      return true;
+//  }
+//  else {
+//      client.ai.resumeCB = callback;
+//      return false;
+//  }
+// }
 }
 
 Array.prototype.remove = function() {

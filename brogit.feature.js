@@ -1,7 +1,7 @@
 /*!
-  * brogit feature v1.18.10 (https://brogit.de/)
-  * 2017-2018 Copyright (c) brogit
-  * Requirements: jQuery 3, Bootstrap 4, Moment.js, toastr
+  * brogit feature v1.19.7 (https://brogit.de/)
+  * 2017-2019 Copyright (c) brogit
+  * Requirements: jQuery 3, Bootstrap 4, (optional) Moment.js, (optional) toastr
   */
 
 var showImgModal = function(title, imgurl, description) {
@@ -80,7 +80,7 @@ function initBrogitFeatures() {
 		}
 	};
 
-	if(lang = $('html').attr('lang')) {
+	if((lang = $('html').attr('lang')) && (typeof moment != 'undefined')) {
 		moment.locale(lang);
 	}
 
@@ -132,21 +132,23 @@ $(window).on('load',function() {
 /**************
 Toastr Notification
 **************/
-toastr.options = {
-  "closeButton": false,
-  "debug": false,
-  "newestOnTop": true,
-  "progressBar": true,
-  "positionClass": "toast-bottom-right",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": 2000,
-  "extendedTimeOut": 0,
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut",
-  "tapToDismiss": true
+if(typeof toastr != "undefined") {
+	toastr.options = {
+	  "closeButton": false,
+	  "debug": false,
+	  "newestOnTop": true,
+	  "progressBar": true,
+	  "positionClass": "toast-bottom-right",
+	  "preventDuplicates": false,
+	  "onclick": null,
+	  "showDuration": "300",
+	  "hideDuration": "1000",
+	  "timeOut": 2000,
+	  "extendedTimeOut": 0,
+	  "showEasing": "swing",
+	  "hideEasing": "linear",
+	  "showMethod": "fadeIn",
+	  "hideMethod": "fadeOut",
+	  "tapToDismiss": true
+	}
 }
