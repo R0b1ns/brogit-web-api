@@ -113,5 +113,5 @@ Thanks to Tobias Ahlin for his cool loading spinner.
 Also a thank to jQuery, bootstrap and momentjs
 
 ## Copyright
-Copyright 2017-2018 Robin Biegel and brogit.de  
+Copyright 2017-2019 Robin Biegel and brogit.de  
 Code released under the [Non-Profit Open Software License ("Non-Profit OSL") 3.0](https://opensource.org/licenses/NPOSL-3.0)
