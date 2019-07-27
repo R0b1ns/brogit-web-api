@@ -17,7 +17,7 @@ var showImgModal = function(title, imgurl, description) {
 };
 
 /**
- * Generic jQuery imgFullscreen extension
+ * Generic jQuery extensions
  */
 $.fn.extend({
 	imgFullscreen: function(name, url, description) {
@@ -49,11 +49,15 @@ $.fn.extend({
 		$(this).text(moment(datetime, "YYYY-MM-DD hh:mm:ss").fromNow());
 
 		return this;
+	},
+	window_load: function() {
+		$(this).addClass('window-load');
+		$(this).html('<div class="sk-folding-cube"><div class="sk-cube1 sk-cube"></div><div class="sk-cube2 sk-cube"></div><div class="sk-cube4 sk-cube"></div><div class="sk-cube3 sk-cube"></div></div>');
 	}
 });
 
 function initBrogitFeatures() {
-	$('.window-load').html('<div class="sk-folding-cube"><div class="sk-cube1 sk-cube"></div><div class="sk-cube2 sk-cube"></div><div class="sk-cube4 sk-cube"></div><div class="sk-cube3 sk-cube"></div></div>');
+	$('.window-load').window_load();
 
 	//construct
 	var anim_zoom = function() {
