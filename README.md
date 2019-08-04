@@ -15,6 +15,9 @@ Soon you can check the Documentation on [brogit.de/documentation](https://brogit
   
 The *js* brings the **client** object and some smart functions
 
+### Bug notice
+If you use < base href="#" >. You have to set before loading this script. Instead this will have a wrong origin in some cases.
+
 ### client.xhr
 `client.xhr(mode, route, data, callback);`  
 

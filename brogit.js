@@ -392,7 +392,7 @@ function ClientResponse() {
             //last response error from templateSelector
 
             //checkup last response. if something went wrong. We say a error instead
-            if(responseData[responseData.length-1] && responseData[responseData.length-1].statusText) {
+            if(responseData[responseData.length-1] && responseData[responseData.length-1].statusText) {
                 finishText = responseData[responseData.length-1].statusText + ". Versuchen wir es erneut";
             }
             else {
