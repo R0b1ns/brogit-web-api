@@ -1,5 +1,5 @@
 /*!
-  * brogit v1.19.7 (https://brogit.de/)
+  * brogit v1.19.9 (https://brogit.de/)
   * 2017-2019 Copyright (c) brogit
   * Requirements: jQuery 3
   */
@@ -50,13 +50,18 @@ function Client(origin)
             data: data,
             success: function(resultdata, textStatus, jqXHR) {
                 callback(resultdata, data, textStatus, jqXHR);
+                console.log("success");
             },
-            error: function(resultdata, textStatus, jqXHR) {
-                callback(resultdata, data, textStatus, jqXHR);
+            error: function(jqXHR, textStatus, errorThrown) {
+                if((textStatus == 'error') && !errorThrown) {
+                    console.error('No connection');
+                }
+                callback(errorThrown, data, textStatus, jqXHR);
             },
             complete: function(jqXHR, textStatus) {
                 Cresponse++;
                 client.checkloading();
+                console.log("complete");
             }
         } ) );
     }
