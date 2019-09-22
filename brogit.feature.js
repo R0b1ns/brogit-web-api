@@ -53,6 +53,21 @@ $.fn.extend({
 	window_load: function() {
 		$(this).addClass('window-load');
 		$(this).html('<div class="sk-folding-cube"><div class="sk-cube1 sk-cube"></div><div class="sk-cube2 sk-cube"></div><div class="sk-cube4 sk-cube"></div><div class="sk-cube3 sk-cube"></div></div>');
+
+		return this;
+	},
+	overlay: function(classes, html) {
+		if(!$(this).parent().parent('.x-container').length) {
+			$(this).wrap('<div class="x-container"><div class="x-content no-select ' + classes + '"></div></div>');
+			var overlay = $('<div class="x-overlay" style="display:none;"></div>');
+			overlay.html(html);
+			$(this).parent().parent('.x-container').append(overlay);
+			overlay.fadeIn();
+
+			return overlay;
+		}
+
+		return this;
 	}
 });
 
