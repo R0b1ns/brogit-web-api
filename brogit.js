@@ -50,7 +50,6 @@ function Client(origin)
             data: data,
             success: function(resultdata, textStatus, jqXHR) {
                 callback(resultdata, data, textStatus, jqXHR);
-                console.log("success");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 if((textStatus == 'error') && !errorThrown) {
@@ -61,7 +60,6 @@ function Client(origin)
             complete: function(jqXHR, textStatus) {
                 Cresponse++;
                 client.checkloading();
-                console.log("complete");
             }
         } ) );
     }
