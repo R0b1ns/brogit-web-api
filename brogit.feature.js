@@ -1,5 +1,5 @@
 /*!
-  * brogit feature v1.19.7 (https://brogit.de/)
+  * brogit feature v1.19.9 (https://brogit.de/)
   * 2017-2019 Copyright (c) brogit
   * Requirements: jQuery 3, Bootstrap 4, (optional) Moment.js, (optional) toastr
   */
@@ -141,13 +141,13 @@ if(typeof toastr != "undefined") {
 	  "closeButton": false,
 	  "debug": false,
 	  "newestOnTop": true,
-	  "progressBar": true,
-	  "positionClass": "toast-bottom-right",
+	  "progressBar": false,
+	  "positionClass": "toast-bottom-left",
 	  "preventDuplicates": false,
 	  "onclick": null,
 	  "showDuration": "300",
 	  "hideDuration": "1000",
-	  "timeOut": 2000,
+	  "timeOut": 0,
 	  "extendedTimeOut": 0,
 	  "showEasing": "swing",
 	  "hideEasing": "linear",
