@@ -1,5 +1,5 @@
 /*!
-  * brogit v1.19.9 (https://brogit.de/)
+  * brogit v1.19.10 (https://brogit.de/)
   * 2017-2019 Copyright (c) brogit
   * Requirements: jQuery 3
   */
@@ -34,7 +34,7 @@ function Client(origin)
 
     if(this.origin != location.origin)
     {
-        this.request.xhrFields = { withCredentials: true };
+        //this.request.xhrFields = { withCredentials: true };
         this.request.crossDomain = true;
     }
 
