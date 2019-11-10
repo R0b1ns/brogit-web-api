@@ -1,5 +1,5 @@
 /*!
-  * brogit feature v1.19.9 (https://brogit.de/)
+  * brogit feature v1.19.11 (https://brogit.de/)
   * 2017-2019 Copyright (c) brogit
   * Requirements: jQuery 3, Bootstrap 4, (optional) Moment.js, (optional) toastr
   */
@@ -147,6 +147,18 @@ $(document).ready(function() {
 $(window).on('load',function() {
 	$('.window-load').slideUp();
 });
+
+//ty to stackoverflow : cms
+function delay(callback, ms) {
+  var timer = 0;
+  return function() {
+    var context = this, args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      callback.apply(context, args);
+    }, ms || 0);
+  };
+}
 
 /**************
 Toastr Notification

@@ -29,23 +29,27 @@ If you use < base href="#" >. You have to set before loading this script. Instea
 
 * __callback__ _function_ Callback with the args _resultdata, data, textStatus, jqXHR_ which is executed on success and error
 
-	#### Example
-	~~~javascript
-	client.xhr(
-		'get',
-		'api/user',
-		{id: 1, foo:"bar"},
-		function(resultdata, data, textStatus, jqXHR) {
-			if(success(resultdata) {
-				console.log("Function Success returns true, when resultdata.status == 200");
-			}
-			else {
-				console.log("resultdata.status != 200");
-			}
-			//textStatus tells me if general successful request
+	* __resultdata__ _Object_ If the request was successful it contains the response data. If not it contains the errorThrown Object
+	* __data__ _PlainObject or String or Array_ Contains __data__ from the request
+	* __textStatus__ _String_ Can be "success", "notmodified", "nocontent", "error", "timeout", "abort", or "parsererror" -- Look in jQuery Documentation
+	* __jqXHR__ _jqXHR_ XMLHTTPRequest object
+
+#### Example
+~~~javascript
+client.xhr(
+	'get',
+	'api/user',
+	{id: 1, foo:"bar"},
+	function(resultdata, data, textStatus, jqXHR) {
+		if(textStatus == 'success') {
+			console.log("Function Success returns true, when resultdata.status == 200");
 		}
-	);
-	~~~
+		else {
+			console.log(resultdata);
+		}
+	}
+);
+~~~
 
 ### client.loxhr
 
@@ -57,22 +61,26 @@ For this feature your Server have to accept _limit_ and _offset_
 
 * __containerElement__ The container element where u append content with the callback
 
-	#### Example
-	~~~javascript
-	client.loxhr(
-		'get',
-		'api/user',
-		{},
-		function(resultdata, data, textStatus, jqXHR) {
-			if(success(resultdata) {
+_All other arguments are equal client.xhr_
+
+#### Example
+~~~javascript
+client.loxhr(
+	'get',
+	'api/user',
+	{},
+	function(resultdata, data, textStatus, jqXHR) {
+		if(textStatus == 'success') {
+			if(resultdata.data) {
 				for(var i = 0; i < resultdata.data.length; i++) {
 					$('#containerElement').append(resultdata.data[i].name);
 				}
 			}
-		},
-		$('#containerElement')
-	);
-	~~~
+		}
+	},
+	$('#containerElement')
+);
+~~~
 	
 ### client.ai
 
