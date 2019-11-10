@@ -124,6 +124,31 @@ function Client(origin)
         }
     }
 
+    this.checkloading = function()
+    {
+        if((Crequest != Cresponse) && this.status != 'load')
+        {
+            this.status = 'load';
+            this.loadCallback();
+        }
+        else if(Crequest == Cresponse) {
+            this.status = 'ready';
+            this.readyCallback();
+        }
+    }
+
+    this.loadCallback = function()
+    {
+        $('main').append('<div class="load"><div class="sk-folding-cube"><div class="sk-cube1 sk-cube"></div><div class="sk-cube2 sk-cube"></div><div class="sk-cube4 sk-cube"></div><div class="sk-cube3 sk-cube"></div></div></div>');
+    }
+
+    this.readyCallback = function()
+    {
+        $('.load').fadeOut( 1000, function() { $(this).remove(); });
+    }
+
+    this.ai = new ClientResponse() || {};
+
     //UPDATE this 26.03.2019, deprecated
 /*    this.upload = function(formelement, route, callback) {
         if(typeof(FormData) == 'undefined') {
@@ -235,31 +260,6 @@ function Client(origin)
         //Kill the queue after Execution
         this.cbQueue = new Array();
     }
-
-    this.checkloading = function()
-    {
-        if((Crequest != Cresponse) && this.status != 'load')
-        {
-            this.status = 'load';
-            this.loadCallback();
-        }
-        else if(Crequest == Cresponse) {
-            this.status = 'ready';
-            this.readyCallback();
-        }
-    }
-
-    this.loadCallback = function()
-    {
-        $('main').append('<div class="load"><div class="sk-folding-cube"><div class="sk-cube1 sk-cube"></div><div class="sk-cube2 sk-cube"></div><div class="sk-cube4 sk-cube"></div><div class="sk-cube3 sk-cube"></div></div></div>');
-    }
-
-    this.readyCallback = function()
-    {
-        $('.load').fadeOut( 1000, function() { $(this).remove(); });
-    }
-
-    this.ai = new ClientResponse() || {};
 }
 
 function ClientResponse() {

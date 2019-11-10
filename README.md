@@ -110,7 +110,22 @@ client.loxhr(
 	$('#containerElement')
 );
 ~~~
-	
+
+### client.* Variables
+
+* __client.origin__ _String_ URL for requests
+* __client.status__ _String_ Indicator if requests are still in progress ("load", "ready")
+
+### client.loadCallback
+
+Function which is executed when a request via _client.xhr_ or _client.loxhr_ is started.
+Default: Add loading spinner on bottom left of the main element
+
+### client.readyCallback
+
+Function which is executed when all requests are done
+Default: Fade out and remove all elements with the class .load
+
 ### client.ai
 
 Coming soon. Check example and source code
