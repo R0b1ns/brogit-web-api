@@ -9,6 +9,35 @@
 * Client text response builder
 * Generic design helper features
 
+## Requirements
+* _brogit.js_
+	* [jQuery](https://github.com/jquery/jquery) > 3.0.0
+* _brogit.feature.js_
+	* [jQuery](https://github.com/jquery/jquery) > 3.0.0
+	* [bootstrap](https://github.com/twbs/bootstrap) > 4.0.0
+	* (optional) [Moment.js](https://github.com/moment/moment/) > 2.0.0
+	* (optional) [toastr](https://github.com/CodeSeven/toastr) > 2.0.0
+	
+## Getting Started
+~~~html
+<!-- jQuery, bootstrap -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!-- moment.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+
+<!-- brogit-web-api -->
+	<script src="https://api.brogit.de/brogit.min.js" type="text/javascript"></script>
+	<link href="https://api.brogit.de/brogit.min.css" rel="stylesheet">
+	<script src="https://api.brogit.de/brogit.feature.min.js" type="text/javascript"></script>
+	<link href="https://api.brogit.de/brogit.feature.min.css" rel="stylesheet">
+~~~
+
+
 ## Documentation
 
 Soon you can check the Documentation on [brogit.de/documentation](https://brogit.de/documentation).
