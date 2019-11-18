@@ -10,7 +10,7 @@ var showImgModal = function(title, imgurl, description) {
 	}
 
 	$('.bs-img-modal-lg .modal-title').html(title);
-	$('.bs-img-modal-lg .modal-body img').attr('src', imgurl);
+	$('.bs-img-modal-lg .modal-body img').prop('src', imgurl);
 	$('.bs-img-modal-lg .modal-description').html(description);
 
 	$('.bs-img-modal-lg').modal('show');
@@ -23,13 +23,13 @@ $.fn.extend({
 	imgFullscreen: function(name, url, description) {
 		$(this).addClass('img-fullscreen');
 
-		var name = name || $(this).attr('data-name');
-		var url = url || $(this).attr('data-url');
-		var description = description || $(this).attr('data-description');
+		var name = name || $(this).data('name');
+		var url = url || $(this).data('url');
+		var description = description || $(this).data('description');
 
-		$(this).attr('data-name', name);
-		$(this).attr('data-url', url);
-		$(this).attr('data-description', description);
+		$(this).data('name', name);
+		$(this).data('url', url);
+		$(this).data('description', description);
 
 		if($._data( this, "events" ) == null) {
 			$(this).on("click", {name:name, url:url, description:description}, function( event ) {
@@ -42,9 +42,9 @@ $.fn.extend({
 	fromNow: function(datetime) {
 		$(this).addClass('moment-fromnow');
 
-		var datetime = datetime || $(this).attr('data-datetime');
+		var datetime = datetime || $(this).data('datetime');
 
-		$(this).attr('data-datetime', datetime);
+		$(this).data('datetime', datetime);
 
 		$(this).text(moment(datetime, "YYYY-MM-DD hh:mm:ss").fromNow());
 
@@ -68,6 +68,53 @@ $.fn.extend({
 		}
 
 		return this;
+	},
+	b_load: function(url, fragment) {
+		$(this).addClass('b-load');
+
+		url = url || $(this).data('url') || $(this).prop('href');
+
+		if(!url) {
+			console.warn('brogit.load: No url!');
+			return false;
+		}
+
+		var link = $(this).prop('tagName') == 'A';
+
+		link ? $(this).prop('href', url) : $(this).data('url', url);
+
+		var container = link ? $('main#b-loaded') : $(this);
+		var fragment = fragment || $(this).data('fragment') || '';
+		$(this).data('fragment', fragment);
+
+		var loadstr = url + ' ' + fragment;
+
+		if(link) {
+			var events = $._data( $(this).get(0), "events" );
+
+			if(!(events != null && events.click)) {
+				$(this).on('click', function(e) {
+					e.preventDefault();
+
+					$('main#b-content').hide();
+
+					container.load(loadstr, function(responseText, textStatus, jqXHR) {
+						if(textStatus == 'success') {
+							var html = $(responseText);
+							$.each( html, function( i, el ) {
+								if(el.nodeName == 'TITLE') {
+									window.history.pushState({'loadstr': loadstr, 'fragment': fragment}, $(el).text(), url);
+									return false;
+								}
+							});
+						}
+					});
+				});
+			}
+		}
+		else {
+			container.load(loadstr);
+		}
 	}
 });
 
@@ -99,7 +146,7 @@ function initBrogitFeatures() {
 		}
 	};
 
-	if((lang = $('html').attr('lang')) && (typeof moment != 'undefined')) {
+	if((lang = $('html').prop('lang')) && (typeof moment != 'undefined')) {
 		moment.locale(lang);
 	}
 
@@ -118,6 +165,28 @@ function initBrogitFeatures() {
 	// Initiator Generic imgFullscreen
 	$( ".img-fullscreen" ).each(function() {
 		$(this).imgFullscreen();
+	});
+
+	//Modify Page for b-load
+	if($('.b-load').length) {
+		$('body').wrapInner('<main id="b-content"></main>');
+		$('body').append('<main id="b-loaded"></main>');
+
+		$(window).on('popstate', function(e) {
+			if(e.originalEvent.state) {
+				$('main#b-content').hide();
+				$('main#b-loaded').load(e.originalEvent.state.loadstr);
+			}
+			else {
+				$('main#b-content').show();
+				$('main#b-loaded').empty();
+			}
+		});
+	}
+
+	//Initiator Generic b-load
+	$('.b-load').each(function() {
+		$(this).b_load();
 	});
 
 	$( "a.smooth, .navbar.smooth a" ).each(function() {

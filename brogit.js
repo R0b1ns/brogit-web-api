@@ -1,5 +1,5 @@
 /*!
-  * brogit v1.19.10 (https://brogit.de/)
+  * brogit v1.19.11 (https://brogit.de/)
   * 2017-2019 Copyright (c) brogit
   * Requirements: jQuery 3
   */
@@ -53,9 +53,9 @@ function Client(origin)
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 if((textStatus == 'error') && !errorThrown) {
-                    console.error('No connection');
+                    console.error('Can\'t connect to '+this.url);
                 }
-                callback(errorThrown, data, textStatus, jqXHR);
+                callback(jqXHR.responseJSON, data, textStatus, jqXHR, errorThrown);
             },
             complete: function(jqXHR, textStatus) {
                 Cresponse++;
