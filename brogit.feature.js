@@ -1,6 +1,6 @@
 /*!
-  * brogit feature v1.19.11 (https://brogit.de/)
-  * 2017-2019 Copyright (c) brogit
+  * brogit feature v1.20.3 (https://brogit.de/)
+  * 2017-2020 Copyright (c) brogit
   * Requirements: jQuery 3, Bootstrap 4, (optional) Moment.js, (optional) toastr
   */
 
@@ -137,11 +137,13 @@ function initBrogitFeatures() {
 	};
 
 	var anim_slide = function(){
-		var pos = $(this).offset().top;
 
-		var winTop = $(window).scrollTop();
+		var posBot = $(this).offset().top + $(this).height();
+
+		var scrollBot = $(window).scrollTop() + $(window).height();
 		
-		if (pos < winTop + 600) {
+		// trigger when bottom of element gets visible
+		if (posBot < scrollBot) {
 			$(this).addClass("slide-up");
 		}
 	};
