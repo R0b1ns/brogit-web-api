@@ -139,7 +139,6 @@ function initBrogitFeatures() {
 	var anim_slide = function(){
 
 		var posBot = $(this).offset().top + $(this).height();
-
 		var scrollBot = $(window).scrollTop() + $(window).height();
 		
 		// trigger when bottom of element gets visible
@@ -157,6 +156,7 @@ function initBrogitFeatures() {
 	$(".moment-fromnow").each(function(){
 		$(this).fromNow();
 	});
+	$(".anim-slide").each(anim_slide);
 
 	//eventhandling
 	$(window).scroll(function() {
