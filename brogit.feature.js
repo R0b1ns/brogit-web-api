@@ -122,16 +122,18 @@ function initBrogitFeatures() {
 	$('.window-load').window_load();
 
 	//construct
+
+	// UPDATE need a .anim-zoom-child-inverse to not scale a element in a container
 	var anim_zoom = function() {
-		var pos = $(this).offset().top;
-		var winTop = $(window).scrollTop();
+		var offsetTop = $(this).offset().top;
+		var scrollTop = $(window).scrollTop();
 
 		var height = $(this).height();
-		var screenY = $(window).innerHeight();
+		var windowY = $(window).innerHeight();
 
-		if( ( (pos + height) > winTop ) && (pos < (winTop + screenY)) )
+		if( ( (offsetTop + height) > scrollTop ) && (offsetTop < (scrollTop + windowY)) )
 		{
-			var zoom = 1 + (0.2 * (1 - ( (pos + height - winTop) / (screenY + height) )));
+			var zoom = 1 + (0.2 * (1 - ( (offsetTop + height - scrollTop) / (windowY + height) )));
 		$(this).css('transform', 'scale('+zoom+')');
 		}
 	};
