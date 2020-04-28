@@ -92,7 +92,7 @@ video.vid-fullscreen-background-fixed:focus {
 	opacity: .5;
 }
 
-.anim-slide {visibility:hidden;}
+.anim-slide {visibility:hidden;display: inline-block;}
 .anim-slide-mod {visibility:hidden;}
 
 .anim-slide-extended {
