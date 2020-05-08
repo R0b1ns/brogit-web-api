@@ -210,6 +210,22 @@ video.vid-fullscreen-background-fixed:focus {
 	color: #111;
 }
 
+.gradient-blue {
+	background-color: #DDEBFF; /* Old browsers */
+
+	background-image: -moz-linear-gradient(140deg, #B2D2FF,#DDEBFF 70%,#75AEFF); /* FF3.6-15 */
+	background-image: -webkit-linear-gradient(140deg, #B2D2FF,#DDEBFF 70%,#75AEFF); /* Chrome10-25,Safari5.1-6 */
+
+	background-image: linear-gradient(140deg,#B2D2FF,#DDEBFF 70%,#75AEFF); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#B2D2FF', endColorstr='#75AEFF',GradientType=0 ); /* IE6-9 */
+
+	color: #444;
+}
+
+.gradient-blue h1, .gradient-blue h2, .gradient-blue h3, .gradient-blue h4, .gradient-blue h5, .gradient-blue h6 {
+	color: #111;
+}
+
 /*Bootstrap 4, carousel as background (covered), dynamic height, carousel control only on hover */
 .carousel-preview {
 	/*setting up height and margin*/
