@@ -13,6 +13,9 @@ if(!baseOrigin) {
     baseOrigin = (baseTags.length ? baseTags[0].href : document.URL);
 }
 
+/* Remove trailing Filename */
+baseOrigin = baseOrigin.substr(0, baseOrigin.lastIndexOf("/") + 1);
+
 var client = new Client(baseOrigin) || {};
 
 function Client(origin)
