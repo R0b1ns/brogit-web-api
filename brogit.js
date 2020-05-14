@@ -1,6 +1,6 @@
 /*!
-  * brogit v1.19.11 (https://brogit.de/)
-  * 2017-2019 Copyright (c) brogit
+  * brogit v1.20.05 (https://brogit.de/)
+  * 2017-2020 Copyright (c) brogit
   * Requirements: jQuery 3
   */
 
@@ -139,12 +139,12 @@ function Client(origin)
 
     this.loadCallback = function()
     {
-        $('main').append('<div class="load"><div class="sk-folding-cube"><div class="sk-cube1 sk-cube"></div><div class="sk-cube2 sk-cube"></div><div class="sk-cube4 sk-cube"></div><div class="sk-cube3 sk-cube"></div></div></div>');
+        $('main').append('<div class="brogit-wapi-load"><div class="sk-folding-cube"><div class="sk-cube1 sk-cube"></div><div class="sk-cube2 sk-cube"></div><div class="sk-cube4 sk-cube"></div><div class="sk-cube3 sk-cube"></div></div></div>');
     }
 
     this.readyCallback = function()
     {
-        $('.load').fadeOut( 1000, function() { $(this).remove(); });
+        $('.brogit-wapi-load').fadeOut( 1000, function() { $(this).remove(); });
     }
 
     this.ai = new ClientResponse() || {};

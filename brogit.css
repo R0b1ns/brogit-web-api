@@ -1,71 +1,14 @@
 /*!
-  * brogit v1.18.10 (https://brogit.de/)
-  * 2017-2018 Copyright (c) brogit
+  * brogit v1.20.05 (https://brogit.de/)
+  * 2017-2020 Copyright (c) brogit
   */
 
-@import url('https://fonts.googleapis.com/css?family=Righteous');
-
-div.load
+div.brogit-wapi-load
 {
   position: fixed;
   bottom:0;left:0;
   width: 80px;height:80px;
   z-index: 2;
-}
-
-.brogit {
-  position: relative;
-  height: 310px;
-  width: 145px;
-}
-.brogit::before {
-  content: '';
-  display: block;
-  position: absolute;
-  border-right: 50px solid #000;
-  border-top: 50px solid transparent;
-  border-bottom: 85px solid #000;
-}
-.brogit::after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 205px;
-  left: 0;
-  width: 0; height: 0;
-  border-right: 50px solid #000;
-  border-bottom: 50px solid transparent;
-}
-.brogit div:nth-child(1) {
-  display: block;
-  position: absolute;
-  top: 145px;left: 0;
-  width: 50px;height: 50px;
-  background-color: #c10000;
-}
-.brogit div:nth-child(1)::before {
-  content: 'brogit';
-  display: block;
-  position: absolute;
-  top: 100px;left: .5px;
-  color: #000;
-  font-size: 50px;
-  font-family: 'Bauhaus 93', 'Righteous', cursive;
-}
-.brogit div:nth-child(2) {
-  display: block;
-  position: absolute;
-  top: 85px; left: 60px;width: 85px; height: 170px;
-  overflow: hidden;
-}
-.brogit div:nth-child(2)::before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 50px; left: -35px;width: 70px; height: 70px;
-  background-color: transparent;
-  border-radius: 100%;
-  box-shadow: 0 0 0 50px #000;
 }
 
 /*! The MIT License (MIT)
