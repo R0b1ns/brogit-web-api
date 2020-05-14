@@ -1,5 +1,5 @@
 # brogit W-API
-*v1.19.10* - [api.brogit.de](https://api.brogit.de/)
+*v1.20.05* - [api.brogit.de](https://api.brogit.de/)
 
 
 ## Features
@@ -21,7 +21,7 @@
 ## Getting Started
 ~~~html
 <!-- jQuery, bootstrap -->
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.4.0.min.js" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -40,7 +40,7 @@
 
 ## Documentation
 
-Soon you can check the Documentation on [brogit.de/documentation](https://brogit.de/documentation).
+Soon you can check the Documentation on [brogit.de/docs#webapi](https://brogit.de/docs#webapi).
   
 The *js* brings the **client** object and some smart functions
 
@@ -168,5 +168,5 @@ Thanks to Tobias Ahlin for his cool loading spinner.
 Also a thank to jQuery, bootstrap and momentjs
 
 ## Copyright
-Copyright 2017-2019 Robin Biegel and brogit.de  
+Copyright 2017-2020 Robin Biegel and brogit.de  
 Code released under the [Non-Profit Open Software License ("Non-Profit OSL") 3.0](https://opensource.org/licenses/NPOSL-3.0)
