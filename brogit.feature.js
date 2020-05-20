@@ -211,6 +211,9 @@ function initBrogitFeatures() {
 			});
 		}
 	});
+
+	//Initiate bootstrap / popper popovers
+	$('[data-toggle="popover"]').popover();
 }
 
 $(document).ready(function() {
