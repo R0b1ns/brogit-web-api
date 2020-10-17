@@ -4,6 +4,38 @@
   * Requirements: jQuery 3, Bootstrap 4, (optional) Moment.js, (optional) toastr
   */
 
+  /* UPDATE INTEGRATE THIS */
+
+  /*
+$(document).ready(function() {
+	//$('.navbar').affix({offset: {top: $('header').height()-56} });
+
+	//bootstrap 3::affix replacement. NEED TO UPDATE to generic jquery plugin
+	var object = $('.navbar');
+	var top = $('header').height()-$('nav.navbar').outerHeight();
+
+	var affix = function(e) {
+		var object = e.data.object;
+		var top = e.data.offset.top;
+
+		var scrollTop = $(window).scrollTop();
+
+		if (scrollTop > top || isNaN(top)) {
+			object.removeClass('affix-top');
+			object.addClass('affix');
+		}
+		else {
+			object.removeClass('affix');
+			object.addClass('affix-top');
+		}
+	}
+
+	affix({data: {object: object, offset: {top: top}}});
+
+	$(window).on('scroll', {object: object, offset: {top: top}}, affix);
+});
+  */
+
 var showImgModal = function(title, imgurl, description) {
 	if(!$('.bs-img-modal-lg').length) {
 		$('body').append('<div class="modal fade bs-img-modal-lg" tabindex="-1" role="dialog" aria-labelledby="ImgModalFullscreen"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><h4 class="modal-title" id="ImgModalFullscreen"></h4><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></div><div class="modal-body"><img class="img-fluid d-block mx-auto" src=""></div><div class="modal-footer"><div class="modal-description"></div><button type="button" class="btn btn-primary" data-dismiss="modal">Schließen</button></div></div></div></div>');
