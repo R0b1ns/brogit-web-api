@@ -1,5 +1,5 @@
 /*!
-  * brogit feature v1.20.05 (https://brogit.de/)
+  * brogit feature v1.21.05 (https://brogit.de/)
   * 2017-2020 Copyright (c) brogit
   * Requirements: jQuery 3, Bootstrap 4, (optional) Moment.js, (optional) toastr
   */
@@ -78,7 +78,7 @@ $.fn.extend({
 
 		$(this).data('datetime', datetime);
 
-		$(this).text(moment(datetime, "YYYY-MM-DD hh:mm:ss").fromNow());
+		$(this).text(moment(datetime).fromNow());
 
 		return this;
 	},
