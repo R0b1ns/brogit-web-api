@@ -1,6 +1,4 @@
 # brogit W-API
-*v1.20.05* - [api.brogit.de](https://api.brogit.de/)
-
 
 ## Features
 * Simple XHR
