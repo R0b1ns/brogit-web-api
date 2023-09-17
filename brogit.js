@@ -41,14 +41,20 @@ function Client(origin)
         this.request.crossDomain = true;
     }
 
-    //mode = GET, POST, PUT, DELETE
-    this.xhr = function(mode, route, data, callback)
+    /**
+     * Execute AJAX Request
+     * @param  {String} method      HTTP request method like GET, POST, PUT, DELETE, ...
+     * @param  {String} route       Relative URL from client.origin
+     * @param  {Mixed} data         PlainObject or String or Array Data which is send in the request
+     * @param  {Function} callback  Callback with the args resultdata, data, textStatus, jqXHR which is executed on success and error 
+     */
+    this.xhr = function(method, route, data, callback)
     {
         //UPDATE. Check for undefined
         Crequest++;
         this.checkloading();
         $.ajax($.extend( {}, this.request, {
-            type: mode,
+            type: method,
             url: this.origin+route,
             data: data,
             success: function(resultdata, textStatus, jqXHR) {
@@ -69,7 +75,15 @@ function Client(origin)
 
     this.loxhrStorage = new Array();
 
-    this.loxhr = function(mode, route, data, callback, containerElement) {
+    /**
+     * Limit Offset XHR function. It loads when end of containerElement is reached. For this feature your Server have to accept limit and offset
+     * @param  {String} method      HTTP request method like GET, POST, PUT, DELETE, ...
+     * @param  {String} route       Relative URL from client.origin
+     * @param  {Mixed} data         PlainObject or String or Array Data which is send in the request
+     * @param  {Function} callback  Callback with the args resultdata, data, textStatus, jqXHR which is executed on success and error 
+     * @param  {DOMObject} containerElement Element which initiates new request when user scrolls to this
+     */
+    this.loxhr = function(method, route, data, callback, containerElement) {
         if(!containerElement.hasClass('client-reloader') && !this.loxhrStorage[containerElement]) {
             containerElement.addClass('client-reloader');
 
@@ -99,7 +113,7 @@ function Client(origin)
 
             this.loxhrStorage[containerElement] = {
                 status: "ready",
-                mode: mode,
+                method: method,
                 route: route,
                 data: data,
                 callback: prepared_callback
@@ -113,7 +127,7 @@ function Client(origin)
         if(data = this.loxhrStorage[containerElement]) {
             if(data.status == "ready") {
                 data.status = "load";
-                this.xhr(data.mode, data.route, data.data, data.callback);
+                this.xhr(data.method, data.route, data.data, data.callback);
             }
         }
     }
@@ -127,8 +141,12 @@ function Client(origin)
         }
     }
 
+    /**
+     * @return {Boolean}    Return true if status changed. False if not.
+     */
     this.checkloading = function()
     {
+        var status = this.status
         if((Crequest != Cresponse) && this.status != 'load')
         {
             this.status = 'load';
@@ -138,13 +156,21 @@ function Client(origin)
             this.status = 'ready';
             this.readyCallback();
         }
+
+        return (status != this.status)
     }
 
+    /**
+     * Function which is executed when a request via client.xhr or client.loxhr is executed. Default: Add loading spinner on bottom left of the main element 
+     */
     this.loadCallback = function()
     {
         $('main').append('<div class="brogit-wapi-load"><div class="sk-folding-cube"><div class="sk-cube1 sk-cube"></div><div class="sk-cube2 sk-cube"></div><div class="sk-cube4 sk-cube"></div><div class="sk-cube3 sk-cube"></div></div></div>');
     }
 
+    /**
+     * Function which is executed when all requests are done. Default: Fade out and remove all elements with the class .brogit-wapi-load 
+     */
     this.readyCallback = function()
     {
         $('.brogit-wapi-load').fadeOut( 1000, function() { $(this).remove(); });
@@ -193,9 +219,12 @@ function Client(origin)
         } ) );
     }*/
 
-    this.upload = function(file, callback) {
-        var route = "api/file";
-
+    /**
+     * @param  {File} file        File which should be uploaded
+     * @param  {String} route     Route on origin
+     * @param  {Object} callback  Callback object with the functions callback.progress and callback.complete
+     */
+    this.upload = function(file, route, callback) {
         if(typeof(FormData) != 'undefined')
         {
             var form = new FormData();
@@ -224,7 +253,12 @@ function Client(origin)
         } ) );
     }
 
-    //data id:pass
+    /**
+     * Request an asynchronous BasicAuth with Ajax
+     * @param  {Object} key     Data is added as urlencoded string to the request
+     * @param  {String} data    Combination of id:password. String will be converted to base64
+     * @param  {Function}       Callback which is executed when request was executed
+     */
     this.basicauth = function(key, data, callback)
     {
         $.ajax($.extend( {}, this.request, {
@@ -236,12 +270,13 @@ function Client(origin)
         } ) ).done(callback);
     }
 
-    /**
-    * Callback queue
-    * User can decide to run this queue after some responding things
-    * Used by WebControl for Minecraft: Auth
-    */
     var cbQueue = new Array();
+
+    /**
+     * Add functions to a queue an execute them with this.cbdo
+     * @param  {Function} callback  Callback function to be added to the queue
+     * @return {Boolean}            True if callback is callable. False if not.
+     */
     this.cbadd = function(callback)
     {
         //check if callable
@@ -255,6 +290,9 @@ function Client(origin)
         }
     }
 
+    /**
+     * Execute callback which are added to the queue with this.cbadd(callback)
+     */
     this.cbdo = function() {
         for (var i = cbQueue.length - 1; i >= 0; i--) {
             cbQueue[i]();
@@ -561,6 +599,11 @@ var n = this,
    return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
  };
 
+/**
+ * @param  {Number} a   Bytes as Number
+ * @param  {Number} b   Precision of decimal places
+ * @return {String}     Size of bytes formatted in human-readable string
+ */
 function formatBytes(a,b){if(0==a)return"0 Bytes";var c=1024,d=b||2,e=["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"],f=Math.floor(Math.log(a)/Math.log(c));return parseFloat((a/Math.pow(c,f)).toFixed(d))+" "+e[f]}
 
 /**
